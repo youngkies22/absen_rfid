@@ -47,6 +47,12 @@
 						<span>Data Akun Admin</span>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="{{ route('logo.sekolah') }}" class="nav-link">
+						<i class="icon-folder-upload"></i>
+						<span>Logo Sekolah</span>
+					</a>
+				</li>
 				@endif
 				
 				{{-- <li class="nav-item">

@@ -167,5 +167,18 @@ class CadminAkun extends Controller
     }
 	}
 
+	/**
+	 * Form Logo Sekolah
+	 * upload logo sekolah dan backgrup halaman login
+	 * 24-10-2022
+	 */
+	public function LogoSekolah(){
+		$params = [
+			'title'	=>'Logo Sekolah',
+			'label'	=>'<b>Logo Sekolah</b>',
+		];
+		return view('crew/sekolah/form_logo')->with($params);
+	}
+
 	
 }

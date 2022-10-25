@@ -14,8 +14,7 @@ use App\Tahun_ajaran;
 use App\Semester;
 use App\User_guru;
 use Carbon\Carbon;
-
-
+use PhpParser\Node\Stmt\Return_;
 
 class CadminAbsenFinger extends Controller
 {
@@ -207,10 +206,11 @@ class CadminAbsenFinger extends Controller
     $jamout = $request->jamout;
     $status = $request->status;
     
-    $data = Absen::find($id);
-    $data->hgJamIn = $jamin;
-    $data->hgJamOut = $jamout;
-    $data->hgKodeAbsen = $status;
+    $data               = Absen::find($id);
+    $data->hgJamIn      = $jamin;
+    $data->hgJamOut     = $jamout;
+    $data->hgKodeAbsen  = $status;
+    $data->hgCreated    = date('Y-m-d H:i:s');
     if($data->save()){
       $response = ['save'=>'Berhasil Update Absensi']; 
     } 
@@ -403,10 +403,41 @@ class CadminAbsenFinger extends Controller
       ->addColumn('tanggal',function ($data) { 
         return formatTanggalIndo($data->hgTgl);
       })
+      ->addColumn('jamMasuk',function ($data) { 
+        if(empty($data->hgJamIn)){
+          $jamIn = "00:00";
+        }
+        else{
+          $jamIn = $data->hgJamIn;
+        }
+        return $jamIn;
+      })
+      ->addColumn('jamPulang',function ($data) { 
+        if(empty($data->hgJamOut)){
+          $jamOut = "00:00";
+        }
+        else{
+          $jamOut = $data->hgJamOut;
+        }
+        return $jamOut;
+      })
+      ->addColumn('status',function ($data) { 
+        if($data->hgKodeAbsen == "T"){
+          $status = "<span class='badge badge-warning'>TERLAMBAT</span>";
+        }
+        elseif($data->hgKodeAbsen == "A"){
+          $status = "<span class='badge badge-danger '>ALPHA</span>";
+        }
+        else{
+          $status = "<span class='badge badge-primary '>HADIR</span>";
+        }
+        return $status;
+      })
       ->addColumn('tanggalWaktu',function ($data) { 
-        return $data->hgTgl.' '.$data->hgJamIn;
+        //return $data->hgTgl.' '.$data->hgJamIn;
+        return $data->hgCreated;
       });
-      return $dt->make();
+      return $dt->rawColumns(['status'])->make();
     }
     else{
       $data =[];

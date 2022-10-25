@@ -125,6 +125,9 @@
 										<tr>
 											<th>TIMESTAMP</th>
 											<th>NAMA GURU</th>
+											<th>JAM MASUK</th>
+											<th>JAM PULANG</th>
+											<th>STATUS</th>
 											{{-- <th>TANGGAL</th>
 											<th>HARI</th> --}}
 											
@@ -201,8 +204,9 @@
 			// { "data": "no" },
 			{ "data": "tanggalWaktu" },
 			{ "data": "hgNamaFull" },
-			// { "data": "tanggal" },
-			// { "data": "hari" },
+			{ "data": "jamMasuk" },
+			{ "data": "jamPulang" },
+			{ "data": "status" },
 			
 			
 		],

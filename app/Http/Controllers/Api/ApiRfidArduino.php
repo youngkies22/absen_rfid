@@ -216,13 +216,15 @@ class ApiRfidArduino extends Controller
 								$data = array(
 									'hgJamOut'     =>$jam,
 									'hgScanPulang' =>1,
+									'hgCreated'		 =>date('Y-m-d H:i:s'),
 								);
 							}
 							else{
 								$data = array(
 									'hgJamOut'     =>$jam,
 									'hgScanPulang' =>1,
-									'hgKodeAbsen'		=> 'T'
+									'hgKodeAbsen'		=> 'T',
+									'hgCreated'		 =>date('Y-m-d H:i:s'),
 								);
 							}
 						}
@@ -230,12 +232,11 @@ class ApiRfidArduino extends Controller
 							$data = array(
 								'hgJamOut'     =>$jam,
 								'hgScanPulang' =>1,
+								'hgCreated'		 =>date('Y-m-d H:i:s'),
 							);
 						}
 					//cek jam masuk untuk terlambat atau tidak -----------------------------------------------
 
-						
-						
 						$insert = Absen::find($cekabsen->first()->hgId)->update($data);
 						if($insert){ 
 							$response = [
@@ -314,6 +315,7 @@ class ApiRfidArduino extends Controller
 							'hgKodeAbsen' => $status,
 							'hgJenisAbsen'=>1,
 							'hgScanMasuk' =>1,
+							'hgCreated'		=>date('Y-m-d H:i:s'),
 						);
 						$insert = Absen::insert($data);
 						if($insert){ 
@@ -372,6 +374,7 @@ class ApiRfidArduino extends Controller
 						'hgKodeAbsen' => $status,
 						'hgJenisAbsen'=>1,
 						'hgScanPulang' =>1,
+						'hgCreated'		 =>date('Y-m-d H:i:s'),
 					);
 					$insert = Absen::insert($data);
 					if($insert){ 

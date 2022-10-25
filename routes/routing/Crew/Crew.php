@@ -19,14 +19,21 @@ use App\Http\Controllers\UploadFotoController;
 		Route::put('/reset-password-admin', [CadminAkun::class, 'ResetPassword'])->name('reset.password.admin');
 		Route::put('/delete-admin', [CadminAkun::class, 'DeleteAdmin'])->name('delete.admin');
 
+		#logo dan backgroup upload 
+		Route::get('/logo-sekolah', [CadminAkun::class, 'LogoSekolah'])->name('logo.sekolah');
+
 		//Bagian akun profile admin ---------------------------------------------------------------------------------
 			Route::get('/lihat-profile', [CadminAkun::class, 'index'])->name('profile.admin');
 			Route::put('/update-profile/{id}',[CadminAkun::class, 'UpdateAdmin']);
 			
 		//Bagian Upload Foto ---------------------------------------------------------------------------------
 			Route::post('/upload-foto-admin', [UploadFotoController::class, 'UploadFotoAdmin'])->name('upload.foto.admin');
-			Route::post('/upload-foto-guru', [UploadFotoController::class, 'UploadFotoGuru'])->name('upload.foto.guru');
 			
+			#22-10-2022
+			Route::post('/upload-foto-guru', [UploadFotoController::class, 'UploadFotoGuru'])->name('upload.foto.guru');
+			#25-10-2022
+			Route::post('/upload-logo-sekolah', [UploadFotoController::class, 'UploadLogoSekolah'])->name('upload.logo.sekolah');
+			Route::post('/upload-bg-login', [UploadFotoController::class, 'UploadBgLogun'])->name('upload.bg.login');
 		//Bagian sekolah ----------------------------------------------------------------------------------------------
 			Route::get('/lihat-sekolah', 'Admin\CadminSekolah@lihatSekolah')->name('lihat.sekolah');
 			Route::get('/json-sekolah', 'Admin\CadminSekolah@jsonSekolah')->name('json.sekolah');

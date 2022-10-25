@@ -376,6 +376,109 @@ class UploadFotoController extends Controller
 
   }//
 
+  /**
+   * upload logo sekolah
+   * 25-10-2022
+   */
+  public function UploadLogoSekolah(Request $request)
+  {
+    //validasi type gambar buat mryes
+    $pesan =[
+        'logo.required' =>'Foto Tidak Boleh Kosong',
+        'logo.mimes' =>'Foto Harus Berekstensi jpg/png/jpeg',
+        'logo.image' =>'Foto Harus Berekstensi jpg/png/jpeg',
+        //'foto_upload.max' =>'Maksimal Ukuran Foto 3 Mb',
+      ];
+     $validator = Validator::make(request()->all(), [
+        'logo' => 'required|image|mimes:jpg,png,jpeg'
+      ],$pesan);
+    
+    if($validator->fails()) {
+      return response()->json([
+          'danger' => 'Foto Harus Berekstensi jpg/png/jpeg'
+        ]);
+    }
+    else{ 
+      
+      
+      //MENGAMBIL FILE IMAGE DARI FORM
+      $file = $request->file('logo');
+      
+      //MEMBUAT NAME FILE DARI GABUNGAN TIMESTAMP DAN UNIQID()
+      $fileName = 'logo_sekolah.png';
+      
+      //UPLOAD ORIGINAN FILE (BELUM DIUBAH DIMENSINYA)
+      $lokasiFoto = public_path('image/'.$fileName);
+      
+      try {
+
+        Image::make($file)->save($lokasiFoto);
+        return response()->json([
+          'save' => 'Foto Berhasil Di Upload'
+        ]);
+      
+      } catch (\Exception $e) {
+        return response()->json([
+          'error' => $e->getMessage()
+        ]);
+      }
+    }//end else
+     
+
+  }//end function upload
+
+
+  /**
+   * upload bg login sekolah
+   * 25-10-2022
+   */
+  public function UploadBgLogun(Request $request)
+  {
+    //validasi type gambar buat mryes
+    $pesan =[
+        'bg.required' =>'Foto Tidak Boleh Kosong',
+        'bg.mimes' =>'Foto Harus Berekstensi jpg/png/jpeg',
+        'bg.image' =>'Foto Harus Berekstensi jpg/png/jpeg',
+        //'foto_upload.max' =>'Maksimal Ukuran Foto 3 Mb',
+      ];
+     $validator = Validator::make(request()->all(), [
+        'bg' => 'required|image|mimes:jpg,png,jpeg'
+      ],$pesan);
+    
+    if($validator->fails()) {
+      return response()->json([
+          'danger' => 'Foto Harus Berekstensi jpg/png/jpeg'
+        ]);
+    }
+    else{ 
+      
+      
+      //MENGAMBIL FILE IMAGE DARI FORM
+      $file = $request->file('bg');
+      
+      //MEMBUAT NAME FILE DARI GABUNGAN TIMESTAMP DAN UNIQID()
+      $fileName = 'bg.jpg';
+      
+      //UPLOAD ORIGINAN FILE (BELUM DIUBAH DIMENSINYA)
+      $lokasiFoto = public_path('image/'.$fileName);
+      
+      try {
+
+        Image::make($file)->save($lokasiFoto);
+        return response()->json([
+          'save' => 'Foto Berhasil Di Upload'
+        ]);
+      
+      } catch (\Exception $e) {
+        return response()->json([
+          'error' => $e->getMessage()
+        ]);
+      }
+    }//end else
+     
+
+  }//end function upload
+
  
 
 

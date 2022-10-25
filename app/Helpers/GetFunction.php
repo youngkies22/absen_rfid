@@ -191,6 +191,16 @@ function IsAcktive(){
     } 
     return '<img width="80" height="80" src="'.$img.'?date='.time().'" class="img-fluid rounded-circle">';
   }
+
+  function LogoSekolah(){
+    $img = asset('image/logo_sekolah.png');
+    return $img;
+  }
+
+  function BgLogin(){
+    $img = asset('image/bg.jpg');
+    return $img;
+  }
   
 
   function GetHakAkses(){
