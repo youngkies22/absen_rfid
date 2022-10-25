@@ -102,7 +102,7 @@
 				<!-- 2 columns form -->
 				<div class="card">
 					<div class="card-header header-elements-inline">
-						<h5 class="card-title">ABSEN GURU JURNAL : {{ strtoupper(hariIndo(date("l",strtotime(now())))) }}, {{ tgl_indo(date("Y-m-d",strtotime(now()))) }}</h5>
+						<h5 class="card-title"> ABSEN GURU {{ env('NAMA_SEKOLAH') }} : {{ strtoupper(hariIndo(date("l",strtotime(now())))) }}, {{ tgl_indo(date("Y-m-d",strtotime(now()))) }} </h5>
 						<div class="header-elements">
 							<div class="list-icons">
 								<a class="list-icons-item" data-action="collapse"></a>
