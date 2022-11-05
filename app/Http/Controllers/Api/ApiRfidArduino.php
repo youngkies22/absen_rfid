@@ -288,6 +288,15 @@ class ApiRfidArduino extends Controller
 						'pesan2'    => $this->pesan2,
 						'kode'		=> 200
 					];
+						//telegram ----------------------------------------------------------------------------
+						$message ="*BERHASIL ABSEN* \n";
+						$message .="*".$nama."*\n";
+						$message.="PUKUL : ".$jam."\n";
+						$message.="TANGGAL : ".formatTanggalIndo($tgl)."\n";
+						$message.="HARI : ".hariIndo($hari)."\n";
+
+						sendMessageWithFoto($message,$foto);
+					//telegram ----------------------------------------------------------------------------
 					return response()->json($response,200);
 				}
 				
@@ -302,6 +311,15 @@ class ApiRfidArduino extends Controller
 					if($cekabsen->count() > 0){ 
 						
 						$response = ['success'=>'Anda Sudah Absen Masuk']; 
+						//telegram ----------------------------------------------------------------------------
+							$message ="*BERHASIL ABSEN MASUK* \n";
+							$message .="*".$nama."*\n";
+							$message.="PUKUL : ".$jam."\n";
+							$message.="TANGGAL : ".formatTanggalIndo($tgl)."\n";
+							$message.="HARI : ".hariIndo($hari)."\n";
+
+							sendMessageWithFoto($message,$foto);
+						//telegram ----------------------------------------------------------------------------
 						return response()->json($response,200);
 					}
 					else{
