@@ -207,6 +207,15 @@ class ApiRfidArduino extends Controller
 							'pesan2'    => $this->pesan2,
 							'kode'		=> 200
 						];
+						//telegram ----------------------------------------------------------------------------
+							$message ="*BERHASIL ABSEN PULANG* \n";
+							$message .="*".$nama."*\n";
+							$message.="PUKUL : ".$jam."\n";
+							$message.="TANGGAL : ".formatTanggalIndo($tgl)."\n";
+							$message.="HARI : ".hariIndo($hari)."\n";
+
+							sendMessageWithFoto($message,$foto);
+						//telegram ----------------------------------------------------------------------------
 						return response()->json($response,200);
 					}
 					else{ //jika scan pulang tidak ada atau masih kosong
@@ -265,6 +274,7 @@ class ApiRfidArduino extends Controller
 								'pesan2'	=> $this->pesanGagal2,
 								'kode'		=> 403
 							];
+							
 							return response()->json($response,403);
 						}
 					}
