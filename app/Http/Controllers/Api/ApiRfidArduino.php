@@ -286,6 +286,8 @@ class ApiRfidArduino extends Controller
 						'status'	=> 'oke',
 						'pesan'		=> $this->pesan,
 						'pesan2'    => $this->pesan2,
+						'lokasi_skrip' =>'oke',
+						'deskripsi'		=>'jika absen sudah ada (masuk)',
 						'kode'		=> 200
 					];
 						//telegram ----------------------------------------------------------------------------
@@ -310,7 +312,16 @@ class ApiRfidArduino extends Controller
 				if($cekJam == "M"){
 					if($cekabsen->count() > 0){ 
 						
-						$response = ['success'=>'Anda Sudah Absen Masuk']; 
+						
+						$response = [
+							'success'=>'Anda Sudah Absen Masuk',
+							'status'	=> 'oke',
+							'pesan'		=> $this->pesan,
+							'pesan2'    => $this->pesan2,
+							'lokasi_skrip' =>'oke1',
+							'deskripsi'		=>'jika suudah absen masuk',
+							'kode'		=> 200
+						];
 						//telegram ----------------------------------------------------------------------------
 							$message ="*BERHASIL ABSEN MASUK* \n";
 							$message .="*".$nama."*\n";
